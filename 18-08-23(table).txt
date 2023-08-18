@@ -1,0 +1,20 @@
+--------------------------------------------------------
+new table creation
+------------------------------------------------------
+create table ProjectTeachnologyTable (projectTeachnologyId int identity(1,1),projectTeachnologName varchar(20),
+createdOn dateTime default getdate(),updatedOn dateTime default getdate());
+
+create table ProjectTable (projectId int identity(1,1),projectTeachnologyId int,projectName varchar(20),projectDescription varchar(100),
+createdOn dateTime default getdate(),updatedOn dateTime default getdate());
+
+create table EmployeeTable (employeeId int identity(1,1),employeeName varchar(20),employeeAddress varchar(70),employeeSalary bigint,
+createdOn dateTime default getdate(),updatedOn dateTime default getdate());
+
+create table Task (taskId int identity(1,1),projectId int,estimatedTime int,taskDescription varchar(100),
+createdOn dateTime default getdate(),updatedOn dateTime default getdate());
+
+create table AssignTask(assignTaskId int identity(1,1),taskId int,employeeId int,assigntaskDescription varchar(100),
+createdOn dateTime default getdate(),updatedOn dateTime default getdate())
+
+create table Dashboard(dashboardId int identity(1,1),projectId int,taskId int,employeeId int,assignTaskId int,
+createdOn dateTime default getdate(),updatedOn dateTime default getdate())

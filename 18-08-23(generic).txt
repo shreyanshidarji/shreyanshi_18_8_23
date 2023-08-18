@@ -1,0 +1,76 @@
+
+-------------------------------------------------------------------------------------------
+create c# model with baseclass
+-------------------------------------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace genericclassdemo1
+{
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            ProjectTeachnology prt = new ProjectTeachnology();
+            Console.WriteLine(prt.projectTeachnologName = "dotnet"); 
+
+        }
+    }
+
+         public class Dashboard : Baseclass<int, DateTime>
+      {
+        public int projectId;
+        public int taskId;
+        public int employeeId;
+        public int assignTaskId;
+       
+        }
+    public class AssignTask : Baseclass<int, DateTime>
+         {
+        public int TaskId;
+        public int employeeId;
+        public string assigntaskDescription;
+
+         }
+    public class Task : Baseclass<int, DateTime>
+         {
+        public int projectId;
+        public int estimatedTime;
+        public string taskDescriptio;
+        
+         }
+    public class Employee : Baseclass<int, DateTime>
+        {
+     
+          
+            public string employeeName;
+            public string employeeAddress;
+            public int employeeSalary;
+         }
+    public class Project : Baseclass<int,DateTime>
+        {
+        public int projectTeachnologyId;
+        public string projectName;
+        public string projectDescription;
+        }
+
+
+        public class ProjectTeachnology:Baseclass<int,DateTime>
+        {
+         public string projectTeachnologName { get; set; }
+         }
+       
+    public class Baseclass<T,V>
+    {
+        public T Id { get; set; }
+        public V createdOn { get; set; }
+        public V updatedOn { get; set; }
+        
+    }
+    
+}

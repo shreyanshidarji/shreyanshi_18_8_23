@@ -1,0 +1,130 @@
+store procedure
+-----------------------------------------
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE psProjectTeachnologyTable
+	-- Add the parameters for the stored procedure here
+	@projectteachnologyid int,
+	@projectteachnologName varchar(20)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	insert into ProjectTeachnologyTable values(@projectteachnologName,getdate(),getdate());
+END
+GO
+----------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE psProjectTable
+	-- Add the parameters for the stored procedure here
+	@projectid int,
+	@projecttechnologyid int,
+	@projectname varchar(20),
+	@projectdescription varchar(100)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	insert into ProjectTable values(@projecttechnologyid,@projectname,@projectdescription,getdate(),getdate());
+END
+GO
+/*create table ProjectTable (projectId int identity(1,1),projectTeachnologyId int,projectName varchar(20),
+projectDescription varchar(100),createdOn dateTime default getdate(),updatedOn dateTime default getdate());
+*/
+----------------------------------------------------------------
+CREATE PROCEDURE psEmployeeTable
+	-- Add the parameters for the stored procedure here
+	@employeeid int,
+	@employeeName varchar(20),
+	@employeeaddress varchar(70),
+	@employeesalary bigint
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	insert into EmployeeTable values(@employeeName,@employeeaddress,@employeesalary,getdate(),getdate());
+END
+GO
+/*create table EmployeeTable (employeeId int identity(1,1),employeeName varchar(20),
+employeeAddress varchar(70),employeeSalary bigint,createdOn dateTime default getdate(),
+updatedOn dateTime default getdate());
+*/
+--------------------------------------------------------------------------------------
+CREATE PROCEDURE psTask
+	-- Add the parameters for the stored procedure here
+	@taskid int,
+	@projectid int,
+	@estimatedtime int,
+	@taskdescription varchar(100)
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	insert into Task values(@projectid,@estimatedtime,@taskdescription,getdate(),getdate());
+END
+GO
+/*create table Task (taskId int identity(1,1),projectId int,
+estimatedTime int,taskDescription varchar(100),createdOn dateTime default getdate(),updatedOn dateTime default getdate());
+*/
+-----------------------------------------------------------------
+CREATE PROCEDURE psAssignTask
+	-- Add the parameters for the stored procedure here
+	@assigntaskid int,
+	@taskid int,
+	@employeeid int,
+	@assigntaskdescription varchar(100)
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	insert into AssignTask values(@taskid,@employeeid,@assigntaskdescription,getdate(),getdate());
+END
+GO
+/*create table AssignTask(assignTaskId int identity(1,1),taskId int,
+employeeId int,assigntaskDescription varchar(100),createdOn dateTime default getdate(),updatedOn dateTime default getdate())
+*/
+--------------------------------------------------------------------------
+CREATE PROCEDURE psDashboard
+	-- Add the parameters for the stored procedure here
+	@dashboardid int,
+	@projectid int,
+	@taskid int,
+	@employeeid int,
+	@assigntaskid int
+
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	insert into Dashboard values(@projectid,@taskid,@employeeid,@assigntaskid,getdate(),getdate());
+END
+GO
+
+
+
+/*create table Dashboard(dashboardId int identity(1,1),projectId int,taskId int,employeeId int,assignTaskId int,createdOn dateTime default getdate(),updatedOn dateTime default getdate())*/
