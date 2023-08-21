@@ -1,0 +1,35 @@
+--trigger----------------------------------------------
+--------------------------------------------------------
+create trigger tr_EmployeeTable_forInsert
+on EmployeeTable
+AFTER INSERT
+AS
+Begin
+	declare @Id int
+	select @Id = employeeId from inserted
+	insert into EmployeeAudit values('new employee with id ='+cast(@Id as nvarchar(5))+ 'is added on'+cast(GETDATE() as nvarchar(30)))
+End
+---------------------------------------
+create trigger tr_assigntask_forinsert
+on AssignTask
+AFTER INSERT
+AS
+Begin
+	Declare
+	@taskId int
+	
+	update Task set [status]='Assigned' where Task.taskId
+	in(select inserted.taskId from inserted) 
+End
+
+insert into AssignTask values(6,5,'task assigned',GETDATE(),GETDATE())
+----------------------------------------------------------------------
+create trigger tr_ProjectTable_forInsert
+on ProjectTable
+AFTER INSERT
+AS
+Begin
+	declare @Id int
+	select @Id = projectId from inserted
+	insert into Dashboard values('new project with id ='+cast(@Id as nvarchar(5))+ 'is added on'+cast(GETDATE() as nvarchar(30)))
+End
